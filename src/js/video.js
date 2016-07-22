@@ -94,9 +94,10 @@ function videojs(id, options, ready){
     throw new TypeError('The element or ID supplied is not valid. (videojs)'); // Returns
   }
 
+  const PlayerComponent = Component.getComponent('Player');
   // Element may have a player attr referring to an already created player instance.
   // If not, set up a new player and return the instance.
-  return tag['player'] || Player.players[tag.playerId] || new Player(tag, options, ready);
+  return tag['player'] || Player.players[tag.playerId] || new PlayerComponent(tag, options, ready);
 }
 
 // Add default styles
