@@ -1044,3 +1044,15 @@ test('When VIDEOJS_NO_DYNAMIC_STYLE is set, apply sizing directly to the tech el
   equal(player.tech_.el().width, 600, 'the width is equal to 600');
   equal(player.tech_.el().height, 300, 'the height is equal 300');
 });
+
+test('should allow to use custom player class', function(){
+  class CustomPlayer extends Player {}
+  videojs.registerComponent('Player', CustomPlayer);
+
+  let tag = TestHelpers.makeTag();
+  let player = videojs(tag);
+
+  equal(player instanceof CustomPlayer, true, 'player is custom');
+
+  player.dispose();
+});
